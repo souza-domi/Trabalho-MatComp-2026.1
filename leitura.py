@@ -1,18 +1,22 @@
+# Código que lê os dados do IMU e do VICON e organiza as variáveis para análise.
 
-#Código que lê os dados do IMU e do VICON, e organiza as variáveis para análise.
-
+from pathlib import Path
 import pandas as pd
+
+# -----------------------------
+# Caminho dos dados
+# -----------------------------
+
+DATA_DIR = Path("data")
 
 # -----------------------------
 # IMU
 # -----------------------------
 
 imu = pd.read_csv(
-    "C:/Users/Domi/Desktop/matcomp/imu1.csv",
+    DATA_DIR / "imu1.csv",
     header=None
 )
-
-
 
 # ordenar pelo tempo
 imu = imu.sort_values(by=0)
@@ -47,7 +51,7 @@ az = imu[12]
 # -----------------------------
 
 vi = pd.read_csv(
-    "C:/Users/Domi/Desktop/matcomp/vi1.csv",
+    DATA_DIR / "vi1.csv",
     header=None
 )
 
@@ -63,4 +67,3 @@ t_vi = t_vi / 1e9
 # coordenadas da trajetória real
 cx = vi[2]
 cy = vi[3]
-
